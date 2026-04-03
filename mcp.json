@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "fieldops-agent": {
+      "command": "node",
+      "args": ["C:/projects/fieldops-agent-api/src/mcp/server.js"],
+      "env": {
+        "DATABASE_URL": "postgresql://postgres:...@shuttle.proxy.rlwy.net:24094/railway",
+        "TWILIO_ACCOUNT_SID": "",
+        "TWILIO_AUTH_TOKEN": "",
+        "TWILIO_WHATSAPP_NUMBER": "",
+        "APP_URL": "https://stiltheights.com"
+      }
+    }
+  }
+}

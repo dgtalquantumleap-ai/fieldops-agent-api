@@ -1,0 +1,30 @@
+{
+  "name": "fieldops-agent-api",
+  "version": "1.0.0",
+  "description": "REST API + MCP Server for FieldOps Agent — WhatsApp-native booking, revenue recovery, staff coordination",
+  "main": "src/api/server.js",
+  "bin": {
+    "fieldops-mcp": "src/mcp/server.js"
+  },
+  "scripts": {
+    "start": "node src/api/server.js",
+    "dev": "nodemon src/api/server.js",
+    "mcp": "node src/mcp/server.js"
+  },
+  "keywords": ["whatsapp", "booking", "mcp", "ai-agent", "fieldops"],
+  "author": "Ebenova Solutions",
+  "license": "MIT",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.82.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-rate-limit": "^8.2.1",
+    "pg": "^8.13.3",
+    "uuid": "^9.0.1",
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
