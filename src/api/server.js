@@ -56,7 +56,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, error: 'Internal server error' });
 });
 
-const PORT = process.env.API_PORT || 4000;
+const PORT = process.env.PORT || process.env.API_PORT || 4000;
 app.listen(PORT, () => {
   console.log(`\n🚀 FieldOps Agent API running on port ${PORT}`);
   console.log(`   Health: http://localhost:${PORT}/health`);
