@@ -1,0 +1,84 @@
+{
+  "name": "@ebenova/fieldops-mcp",
+  "version": "1.0.0",
+  "description": "MCP server for FieldOps — WhatsApp-native booking, payment collection, invoice recovery, and staff coordination for cleaning and field service businesses. Use from Claude Desktop, Cursor, or any MCP client.",
+  "main": "index.js",
+  "bin": {
+    "ebenova-fieldops-mcp": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "dotenv": "^16.3.1",
+    "pg": "^8.13.3",
+    "zod": "^3.23.0"
+  },
+  "keywords": [
+    "mcp",
+    "fieldops",
+    "booking",
+    "cleaning",
+    "whatsapp",
+    "invoice",
+    "payment",
+    "field-service",
+    "ebenova",
+    "smithery"
+  ],
+  "author": "Ebenova Solutions <api@ebenova.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ebenova/fieldops-agent-api.git"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "smithery": {
+    "name": "ebenova-fieldops",
+    "entryPoint": "index.js",
+    "configSchema": {
+      "type": "object",
+      "properties": {
+        "DATABASE_URL": {
+          "type": "string",
+          "description": "PostgreSQL connection string for FieldOps database",
+          "required": true
+        },
+        "TWILIO_ACCOUNT_SID": {
+          "type": "string",
+          "description": "Twilio Account SID for WhatsApp messages (or use WHATSAPP_TOKEN for Meta direct)",
+          "required": false
+        },
+        "TWILIO_AUTH_TOKEN": {
+          "type": "string",
+          "description": "Twilio Auth Token",
+          "required": false
+        },
+        "TWILIO_WHATSAPP_NUMBER": {
+          "type": "string",
+          "description": "Twilio WhatsApp sender number (e.g. +14155238886)",
+          "required": false
+        },
+        "WHATSAPP_TOKEN": {
+          "type": "string",
+          "description": "Meta WhatsApp Business API token (alternative to Twilio)",
+          "required": false
+        },
+        "WHATSAPP_PHONE_NUMBER_ID": {
+          "type": "string",
+          "description": "Meta WhatsApp phone number ID",
+          "required": false
+        },
+        "APP_URL": {
+          "type": "string",
+          "description": "Base URL of your FieldOps deployment for payment callbacks",
+          "default": "https://fieldops.ebenova.dev",
+          "required": false
+        }
+      }
+    }
+  }
+}

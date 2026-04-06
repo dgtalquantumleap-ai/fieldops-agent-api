@@ -1,0 +1,57 @@
+# Smithery configuration for @ebenova/fieldops-mcp
+# https://smithery.ai/docs/build/publish
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      DATABASE_URL:
+        type: string
+        description: "PostgreSQL connection string (e.g. postgresql://user:pass@host:5432/fieldops)"
+      TWILIO_ACCOUNT_SID:
+        type: string
+        description: "Twilio Account SID for WhatsApp messaging (optional if using Meta WhatsApp)"
+      TWILIO_AUTH_TOKEN:
+        type: string
+        description: "Twilio Auth Token"
+      TWILIO_WHATSAPP_NUMBER:
+        type: string
+        description: "Twilio WhatsApp sender number in E.164 format"
+      WHATSAPP_TOKEN:
+        type: string
+        description: "Meta WhatsApp Business API token (alternative to Twilio)"
+      WHATSAPP_PHONE_NUMBER_ID:
+        type: string
+        description: "Meta WhatsApp phone number ID"
+      OXAPAY_MERCHANT_KEY:
+        type: string
+        description: "OxaPay merchant key for NGN payments (optional)"
+      POLAR_ACCESS_TOKEN:
+        type: string
+        description: "Polar.sh access token for CAD payments (optional)"
+      POLAR_PRODUCT_ID:
+        type: string
+        description: "Polar.sh product ID (optional)"
+      APP_URL:
+        type: string
+        description: "Base URL for payment callbacks (defaults to https://fieldops.ebenova.dev)"
+    required:
+      - DATABASE_URL
+  commandFunction: |
+    (config) => ({
+      command: 'npx',
+      args: ['-y', '@ebenova/fieldops-mcp'],
+      env: {
+        DATABASE_URL: config.DATABASE_URL,
+        TWILIO_ACCOUNT_SID: config.TWILIO_ACCOUNT_SID || '',
+        TWILIO_AUTH_TOKEN: config.TWILIO_AUTH_TOKEN || '',
+        TWILIO_WHATSAPP_NUMBER: config.TWILIO_WHATSAPP_NUMBER || '',
+        WHATSAPP_TOKEN: config.WHATSAPP_TOKEN || '',
+        WHATSAPP_PHONE_NUMBER_ID: config.WHATSAPP_PHONE_NUMBER_ID || '',
+        OXAPAY_MERCHANT_KEY: config.OXAPAY_MERCHANT_KEY || '',
+        POLAR_ACCESS_TOKEN: config.POLAR_ACCESS_TOKEN || '',
+        POLAR_PRODUCT_ID: config.POLAR_PRODUCT_ID || '',
+        APP_URL: config.APP_URL || 'https://fieldops.ebenova.dev'
+      }
+    })
